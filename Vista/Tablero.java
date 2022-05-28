@@ -38,10 +38,6 @@ public class Tablero implements Constantes{
 
         Control control = new Control();
         ventana.addKeyListener(control);
-
-
-
-     
     }
 
     public void pintar(int x, int y, Color color){
