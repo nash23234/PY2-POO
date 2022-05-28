@@ -29,24 +29,25 @@ public class JugadorPrincipal implements Constantes{
     }
 
     public void moverse(char posicion){
+        lastPosition[X] = coordenadas[X];
+        lastPosition[Y] = coordenadas[Y];
         switch(posicion){
-            case 'R':
-            
+            case 'D':
                 if(coordenadas[X]<TABLERO_SIZE && coordenadas[X]>=0){
                     coordenadas[X]++;
                 }
             break;
-            case 'L':
+            case 'U':
             if(coordenadas[X]<TABLERO_SIZE && coordenadas[X]>=0){
                 coordenadas[X]--;
             }
             break;
-            case 'U':
+            case 'L':
             if(coordenadas[Y]<TABLERO_SIZE && coordenadas[Y]>=0){
                 coordenadas[Y]--;
             }
             break;
-            case 'D':
+            case 'R':
             if(coordenadas[Y]<TABLERO_SIZE){
                 coordenadas[Y]++;
             }

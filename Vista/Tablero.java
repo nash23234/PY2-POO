@@ -6,15 +6,17 @@ import javax.swing.table.*;
 import Controlador.Control;
 import Modelo.*;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 
 
-public class Tablero implements Constantes{
+public class Tablero implements Constantes,KeyListener{
     JFrame ventana;
     public  JLabel [][] matriz;
-
-    public Control control;
+    JugadorPrincipal jugador= new JugadorPrincipal();
+    
     
     public Tablero(){
         ventana = new JFrame("Tablero");
@@ -22,6 +24,7 @@ public class Tablero implements Constantes{
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setLayout(new GridLayout(30,30));
+        ventana.addKeyListener(this);
 
         matriz = new JLabel[30][30];
         for(int i=0;i<30;i++){
@@ -36,12 +39,14 @@ public class Tablero implements Constantes{
         }
         ventana.setVisible(true);
 
-        Control control = new Control();
-        ventana.addKeyListener(control);
+       
+        
+
     }
 
     public void pintar(int x, int y, Color color){
         matriz[x][y].setBackground(color);
+        
     }
 
     public void limpiar(){
@@ -61,7 +66,49 @@ public class Tablero implements Constantes{
     //si el jugador principal se mueve a otra casilla se pinta la casilla nueva y la antigua se pinta de blanco
     public void moverJugador(int x, int y){
         matriz[x][y].setBackground(JUGADORPRINCIPAL);
-        matriz[x][y].setBackground(BG_COLOR);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+            jugador.moverse('R');
+            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
+            System.out.println("Estoy en la derecha");
+        }
+        if(e.getKeyCode()==KeyEvent.VK_LEFT){
+            jugador.moverse('L');
+            
+            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
+            System.out.println("Estoy en la izquierda");
+        }
+        if(e.getKeyCode()==KeyEvent.VK_DOWN){
+            jugador.moverse('D');
+            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
+            System.out.println("Estoy abajo");
+        }
+        if(e.getKeyCode()==KeyEvent.VK_UP){
+            jugador.moverse('U');
+           
+            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
+            System.out.println("Estoy arriba");
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
     }
 
 

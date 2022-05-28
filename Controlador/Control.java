@@ -19,6 +19,8 @@ public class Control  implements KeyListener{
 
     }
 
+    
+
     @Override
     public void keyTyped(KeyEvent e) {  
 
@@ -28,7 +30,6 @@ public class Control  implements KeyListener{
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()==KeyEvent.VK_RIGHT){
             jugador.moverse('R');
-            
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
             System.out.println("Estoy en la derecha");
         }
@@ -58,8 +59,5 @@ public class Control  implements KeyListener{
     public void keyReleased(KeyEvent e) {
       
     }
-    
-    public static void main(String args){
-        
-    }
+
 }
