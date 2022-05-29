@@ -38,32 +38,8 @@ public class Tablero implements Constantes,KeyListener{
             }
         }
         ventana.setVisible(true);
-
-       
-        
-
     }
 
-    public void pintar(int x, int y, Color color){
-        matriz[x][y].setBackground(color);
-        
-    }
-
-    public void limpiar(){
-        for(int i=0;i<30;i++){
-            for(int j=0;j<30;j++){
-                matriz[i][j].setBackground(BG_COLOR);
-            }
-        }
-    }
-
- 
-    //posicionar el jugador principal en el tablero
-    public void posicionarJugador(int x, int y){
-        matriz[x][y].setBackground(JUGADORPRINCIPAL);
-    }
-
-    //si el jugador principal se mueve a otra casilla se pinta la casilla nueva y la antigua se pinta de blanco
     public void moverJugador(int x, int y){
         matriz[x][y].setBackground(JUGADORPRINCIPAL);
     }
@@ -74,36 +50,7 @@ public class Tablero implements Constantes,KeyListener{
         
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-            jugador.moverse('R');
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
-            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
-            System.out.println("Estoy en la derecha");
-        }
-        if(e.getKeyCode()==KeyEvent.VK_LEFT){
-            jugador.moverse('L');
-            
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
-            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
-            System.out.println("Estoy en la izquierda");
-        }
-        if(e.getKeyCode()==KeyEvent.VK_DOWN){
-            jugador.moverse('D');
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
-            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
-            System.out.println("Estoy abajo");
-        }
-        if(e.getKeyCode()==KeyEvent.VK_UP){
-            jugador.moverse('U');
-           
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
-            moverJugador(jugador.coordenadas[0], jugador.coordenadas[1]);
-            System.out.println("Estoy arriba");
-        }
-
-    }
+    
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -111,28 +58,9 @@ public class Tablero implements Constantes,KeyListener{
         
     }
 
-
-    
-    //posicionar 10 enemigos en el tablero aleatoriamente
-    /*
-    public void posicionarEnemigos(int x, int y){
-        Random r = new Random();
-        int numero = r.nextInt(10);
-        for(int i=0;i<numero;i++){
-            int x1 = r.nextInt(30);
-            int y1 = r.nextInt(30);
-            matriz[x1][y1].setBackground(ENEMIGO);
-        }
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
     }
-    */
-
-    
-    
-
-
-
-
-
-
-
 }

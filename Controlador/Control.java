@@ -7,52 +7,51 @@ import Modelo.*;
 
 import Vista.*;
 
-public class Control  implements KeyListener{
+public class Control  implements KeyListener,Constantes{
     
     JugadorPrincipal jugador= new JugadorPrincipal();
+    public Tablero tablero;
     
     public Control(){
         addKeyListener(this);
     }
     
-    private void addKeyListener(Control control) {
+    void addKeyListener(Control control) {
 
     }
-
-    
 
     @Override
     public void keyTyped(KeyEvent e) {  
 
     }
 
-    @Override
+
+    @Override 
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-            jugador.moverse('R');
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+            jugador.moverseJugador('R');
+            jugador.validarRango(jugador.coordenadas[0],jugador.coordenadas[1]);
+            System.out.println(" cordenada: X"+ jugador.coordenadas[0]+ " cordenada: Y" +jugador.coordenadas[1]);
             System.out.println("Estoy en la derecha");
         }
         if(e.getKeyCode()==KeyEvent.VK_LEFT){
-            jugador.moverse('L');
-            
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+           jugador.moverseJugador('L');
+            jugador.validarRango(jugador.coordenadas[0],jugador.coordenadas[1]);
+            System.out.println(" cordenada: X"+ jugador.coordenadas[0]+" cordenada: Y" +jugador.coordenadas[1]);
             System.out.println("Estoy en la izquierda");
         }
         if(e.getKeyCode()==KeyEvent.VK_DOWN){
-            jugador.moverse('D');
-            
-            
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+            jugador.moverseJugador('D');
+            jugador.validarRango(jugador.coordenadas[0],jugador.coordenadas[1]);
+            System.out.println(" cordenada: X"+ jugador.coordenadas[0]+" cordenada: Y" +jugador.coordenadas[1]);
             System.out.println("Estoy abajo");
         }
         if(e.getKeyCode()==KeyEvent.VK_UP){
-            jugador.moverse('U');
-           
-            System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
+           jugador.moverseJugador('U');
+            jugador.validarRango(jugador.coordenadas[0],jugador.coordenadas[1]);
+            System.out.println(" cordenada: X"+ jugador.coordenadas[0]+" cordenada: Y" +jugador.coordenadas[1]);
             System.out.println("Estoy arriba");
         }
-
     }
 
     @Override

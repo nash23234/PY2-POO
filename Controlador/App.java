@@ -15,6 +15,10 @@ import java.awt.*;
  public class App {
     public static void main(String[] args) {
         Vista.Tablero tablero = new Vista.Tablero();
-        
+        Control control = new Control();
+        control.tablero = tablero;
+      
+
+          
     }
 } 
