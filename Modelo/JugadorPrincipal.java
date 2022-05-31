@@ -1,13 +1,10 @@
 package Modelo;
-import java.awt.event.KeyEvent;
-import java.lang.StackWalker.Option;
-import java.util.Random;
+
 import Vista.*;
 
 import javax.swing.JOptionPane;
-import javax.swing.text.Position;
-import java.util.Observable;
-import java.util.Observer;
+
+
 
 import Controlador.Control;
 
@@ -79,6 +76,49 @@ public class JugadorPrincipal implements Constantes{
         }
     }
 
+    public int[] getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(int[] coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
+    public int[] getLastPosition() {
+        return lastPosition;
+    }
+
+    public void setLastPosition(int[] lastPosition) {
+        this.lastPosition = lastPosition;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
+    public Control getControl() {
+        return control;
+    }
+
+    public void setControl(Control control) {
+        this.control = control;
+    }
+
+	
+
+    
 
 }
     

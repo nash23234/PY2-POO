@@ -5,15 +5,16 @@ import javax.swing.*;
 import Modelo.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.nio.channels.Pipe;
+import java.util.ArrayList;
 import java.util.Random;
 
 
 
 
 public class Tablero implements Constantes, KeyListener{
+    
     public JFrame ventana;
-    public  JLabel [][] matriz;
+    public JLabel [][] matriz;
     public JugadorPrincipal jugador;
     public Atacante atacante;
     
@@ -48,14 +49,22 @@ public class Tablero implements Constantes, KeyListener{
     public void moverJugador(int x, int y){
         matriz[x][y].setBackground(JUGADORPRINCIPAL);
     }
-    
+
+    //poner atacantes en el tablero y guardarlos en un array , que ningun atacante este en el indice 0,0
     public void ponerAtacantes(){
         Random r = new Random();
+
         for(int i=0;i<10;i++){
             int x = r.nextInt(30);
             int y = r.nextInt(30);
-            matriz[x][y].setBackground(ENEMIGO);
+            if(x==0 && y==0){
+                i--;
+            }else{
+                matriz[x][y].setBackground(ENEMIGO);
+                atacante.guardarAtacantes(x, y);
+            }
         }
+
     }
 
 

@@ -28,19 +28,15 @@ public class Control extends Tablero  implements KeyListener,Constantes{
         
     }
 
-
-
-    
-
-  
-
     @Override
     public void keyPressed(KeyEvent e)  {
         if(e.getKeyCode()==KeyEvent.VK_RIGHT){
           
             jugador.moverseJugador('R');
+            atacante.moverseAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             jugador.validarPosicion();
-            atacante.moverseAtacante();
+            
+            //atacante.moverAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             System.out.println("moviendose a la derecha");
 
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
@@ -51,8 +47,10 @@ public class Control extends Tablero  implements KeyListener,Constantes{
     
         if(e.getKeyCode()==KeyEvent.VK_LEFT){
             jugador.moverseJugador('L');
+            
             jugador.validarPosicion();
-            atacante.moverseAtacante();
+            
+            //atacante.moverAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             System.out.println("moviendose a la izquierda");
 
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
@@ -61,8 +59,10 @@ public class Control extends Tablero  implements KeyListener,Constantes{
         }
         if(e.getKeyCode()==KeyEvent.VK_UP){
             jugador.moverseJugador('U');
+            atacante.moverseAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             jugador.validarPosicion();
-            atacante.moverseAtacante();
+           
+            //atacante.moverAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             System.out.println("moviendose hacia arriba");
 
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
@@ -71,8 +71,10 @@ public class Control extends Tablero  implements KeyListener,Constantes{
         }
         if(e.getKeyCode()==KeyEvent.VK_DOWN){
             jugador.moverseJugador('D');
+            atacante.moverseAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             jugador.validarPosicion();
-            atacante.moverseAtacante();
+           
+            //atacante.moverAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             System.out.println("moviendose hacia abajo");
 
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
