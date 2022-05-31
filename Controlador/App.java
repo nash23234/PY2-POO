@@ -1,7 +1,8 @@
 package Controlador;
 
-import java.awt.Dimension;
 import java.beans.Visibility;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
@@ -11,14 +12,9 @@ import java.awt.*;
 /**
  * @author Hengerlyn_Nash
  */
- 
- public class App {
-    public static void main(String[] args) {
-        Vista.Tablero tablero = new Vista.Tablero();
-        Control control = new Control();
-        control.tablero = tablero;
-      
 
-          
+public class App {
+    public static void main(String[] args) {
+        Control control = new Control();
     }
-} 
+}

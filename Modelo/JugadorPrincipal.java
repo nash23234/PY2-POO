@@ -1,10 +1,15 @@
 package Modelo;
+import java.awt.event.KeyEvent;
 import java.lang.StackWalker.Option;
 import java.util.Random;
 import Vista.*;
 
 import javax.swing.JOptionPane;
 import javax.swing.text.Position;
+import java.util.Observable;
+import java.util.Observer;
+
+import Controlador.Control;
 
 
 /**
@@ -17,6 +22,7 @@ public class JugadorPrincipal implements Constantes{
     public int[] lastPosition;
     public int hp;
     public Tablero tablero;
+    public Control control;
 
     public JugadorPrincipal(){
         coordenadas=new int[2];
@@ -38,49 +44,41 @@ public class JugadorPrincipal implements Constantes{
         lastPosition[Y] = coordenadas[Y];
         switch(posicion){
             case 'D':
-                if(coordenadas[X]<TABLERO_SIZE && coordenadas[X]>=0){
+                if(coordenadas[X]<TABLERO_SIZE && coordenadas[X]>=0){//si no esta en el limite de la matriz
                     coordenadas[X]++;
-                    tablero.matriz[lastPosition[X]][lastPosition[Y]].setBackground(BG_COLOR);
-                    tablero.matriz[coordenadas[X]][coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
+                    
                 }
             break;
             case 'U':
-            if(coordenadas[X]<TABLERO_SIZE && coordenadas[X]>=0){
-                coordenadas[X]--;
-                tablero.matriz[lastPosition[X]][lastPosition[Y]].setBackground(BG_COLOR);
-                tablero.matriz[coordenadas[X]][coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
-            }
+                if(coordenadas[X]<TABLERO_SIZE && coordenadas[X]>=0){
+                    coordenadas[X]--;               
+                }
             break;
             case 'L':
-            if(coordenadas[Y]<TABLERO_SIZE && coordenadas[Y]>=0){
-                coordenadas[Y]--;
-                tablero.matriz[lastPosition[X]][lastPosition[Y]].setBackground(BG_COLOR);
-                tablero.matriz[coordenadas[X]][coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
-            }
+                if(coordenadas[Y]<TABLERO_SIZE && coordenadas[Y]>=0){
+                    coordenadas[Y]--;
+                   
+                }
             break;
             case 'R':
-            if(coordenadas[Y]<TABLERO_SIZE){
-                coordenadas[Y]++;
-                tablero.matriz[lastPosition[X]][lastPosition[Y]].setBackground(BG_COLOR);
-                tablero.matriz[coordenadas[X]][coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
-            }
+                if(coordenadas[Y]<TABLERO_SIZE && coordenadas[Y]>=0){
+                    coordenadas[Y]++;
+                                 
+                }
             break;
         }
         
     }
-    
-    //validar rango de coordenadas del jugador principal , si esta en el rango de coordenadas del tablero 
-    public boolean validarRango(int x, int y){
-        if(x>=0 && x<TABLERO_SIZE && y>=0 && y<TABLERO_SIZE){
-            JOptionPane optionPane = new JOptionPane();
-            optionPane.showMessageDialog(null, "El jugador principal se encuentra fuera del rango del tablero");
-            return true;
+
+   
+    public void validarPosicion(){
+        if(coordenadas[X]<0 || coordenadas[X]>=TABLERO_SIZE || coordenadas[Y]<0 || coordenadas[Y]>=TABLERO_SIZE){
+            JOptionPane.showMessageDialog(null, "Se esta saliendo del tablero");
+            coordenadas[X]=lastPosition[X];
+            coordenadas[Y]=lastPosition[Y];
         }
-        return false;
     }
-        
 
 
-     
-     
 }
+    

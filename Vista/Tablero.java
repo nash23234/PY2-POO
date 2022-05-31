@@ -2,20 +2,21 @@ package  Vista;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.table.*;
-import Controlador.Control;
 import Modelo.*;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.nio.channels.Pipe;
+import java.util.Random;
 
 
 
 
-public class Tablero implements Constantes,KeyListener{
-    JFrame ventana;
+public class Tablero implements Constantes, KeyListener{
+    public JFrame ventana;
     public  JLabel [][] matriz;
-    JugadorPrincipal jugador= new JugadorPrincipal();
+    public JugadorPrincipal jugador;
+    public Atacante atacante;
+    
     
     
     public Tablero(){
@@ -25,7 +26,8 @@ public class Tablero implements Constantes,KeyListener{
         ventana.setResizable(false);
         ventana.setLayout(new GridLayout(30,30));
         ventana.addKeyListener(this);
-
+       
+       
         matriz = new JLabel[30][30];
         for(int i=0;i<30;i++){
             for(int j=0;j<30;j++){
@@ -37,12 +39,26 @@ public class Tablero implements Constantes,KeyListener{
                 ventana.add(matriz[i][j]);
             }
         }
+        moverJugador(0,0);
+        ponerAtacantes();
         ventana.setVisible(true);
+       
     }
 
     public void moverJugador(int x, int y){
         matriz[x][y].setBackground(JUGADORPRINCIPAL);
     }
+    
+    public void ponerAtacantes(){
+        Random r = new Random();
+        for(int i=0;i<10;i++){
+            int x = r.nextInt(30);
+            int y = r.nextInt(30);
+            matriz[x][y].setBackground(ENEMIGO);
+        }
+    }
+
+
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -50,7 +66,13 @@ public class Tablero implements Constantes,KeyListener{
         
     }
 
-    
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -58,9 +80,7 @@ public class Tablero implements Constantes,KeyListener{
         
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
+
+   
+    
 }
