@@ -16,8 +16,8 @@ public class Tablero implements Constantes, KeyListener{
     public JFrame ventana;
     public JLabel [][] matriz;
     public JugadorPrincipal jugador;
-    public Atacante atacante;
-    
+    ArrayList<Atacante> enemigos = new ArrayList<Atacante>();
+
     
     
     public Tablero(){
@@ -41,7 +41,7 @@ public class Tablero implements Constantes, KeyListener{
             }
         }
         moverJugador(0,0);
-        ponerAtacantes();
+        ponerEnemigo();
         ventana.setVisible(true);
        
     }
@@ -50,24 +50,66 @@ public class Tablero implements Constantes, KeyListener{
         matriz[x][y].setBackground(JUGADORPRINCIPAL);
     }
 
-    //poner atacantes en el tablero y guardarlos en un array , que ningun atacante este en el indice 0,0
-    public void ponerAtacantes(){
+    public void moverEnemigo(int x, int y){
+        matriz[x][y].setBackground(ENEMIGO);
+    }
+   
+    public void ponerEnemigo(){
         Random r = new Random();
-
         for(int i=0;i<10;i++){
-            int x = r.nextInt(30);
-            int y = r.nextInt(30);
-            if(x==0 && y==0){
+            int x = r.nextInt(30); //genera un numero aleatorio entre 0 y 29
+            int y = r.nextInt(30); //genera un numero aleatorio entre 0 y 29
+            if(x == 0 && y == 0){
                 i--;
-            }else{
+            }
+            else{
+                if(matriz[x][y].getBackground()==BG_COLOR){
                 matriz[x][y].setBackground(ENEMIGO);
-                atacante.guardarAtacantes(x, y);
+                enemigos.add(new Atacante(x,y));
+                System.out.println("Enemigo creado en fila: "+x+" columna: "+y);
+                }
+                else{
+                    i--; //si no se puede crear el enemigo, se vuelve a intentar
+                }
+                
             }
         }
-
     }
 
+   
 
+    
+    public JFrame getVentana() {
+        return ventana;
+    }
+
+    public void setVentana(JFrame ventana) {
+        this.ventana = ventana;
+    }
+
+    public JLabel[][] getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(JLabel[][] matriz) {
+        this.matriz = matriz;
+    }
+
+    public JugadorPrincipal getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(JugadorPrincipal jugador) {
+        this.jugador = jugador;
+    }
+
+    public ArrayList<Atacante> getEnemigos() {
+        return enemigos;
+    }
+
+    public void setEnemigos(ArrayList<Atacante> enemigos) {
+        this.enemigos = enemigos;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {

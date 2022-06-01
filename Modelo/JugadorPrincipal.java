@@ -18,8 +18,7 @@ public class JugadorPrincipal implements Constantes{
     public int [] coordenadas;
     public int[] lastPosition;
     public int hp;
-    public Tablero tablero;
-    public Control control;
+    
 
     public JugadorPrincipal(){
         coordenadas=new int[2];
@@ -37,8 +36,8 @@ public class JugadorPrincipal implements Constantes{
 
     
     public void moverseJugador(char posicion){
-        lastPosition[X] = coordenadas[X];
-        lastPosition[Y] = coordenadas[Y];
+        lastPosition[X] = coordenadas[X];//guarda la posicion anterior
+        lastPosition[Y] = coordenadas[Y]; //guarda la posicion anterior
         switch(posicion){
             case 'D':
                 if(coordenadas[X]<TABLERO_SIZE && coordenadas[X]>=0){//si no esta en el limite de la matriz
@@ -98,22 +97,6 @@ public class JugadorPrincipal implements Constantes{
 
     public void setHp(int hp) {
         this.hp = hp;
-    }
-
-    public Tablero getTablero() {
-        return tablero;
-    }
-
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero;
-    }
-
-    public Control getControl() {
-        return control;
-    }
-
-    public void setControl(Control control) {
-        this.control = control;
     }
 
 	
