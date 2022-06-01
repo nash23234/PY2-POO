@@ -1,10 +1,9 @@
 package Modelo;
 
-public class Aliado implements Constantes{
-    public int[] currentPosition;
-    public int[] lastPosition;
+public class Aliado extends Secundarios{
+    
     public int hp;
-    public Aliado(){
+    public Aliado(int x, int y){
         currentPosition = new int[2];
         currentPosition[X] = 0;
         currentPosition[Y] = 0;
@@ -19,6 +18,6 @@ public class Aliado implements Constantes{
         return hp;
     }
 
-    
+
     
 }

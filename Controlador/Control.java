@@ -9,7 +9,6 @@ public class Control extends Tablero  implements KeyListener,Constantes{
     
     JugadorPrincipal jugador= new JugadorPrincipal();
     public Tablero tablero;
-    public Atacante atacante;
     
     public Control() {
     }
@@ -24,6 +23,8 @@ public class Control extends Tablero  implements KeyListener,Constantes{
         // TODO Auto-generated method stub
         
     }
+
+    
 
     @Override
     public void keyPressed(KeyEvent e)  {
