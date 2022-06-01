@@ -23,16 +23,20 @@ public class Enemigo extends Secundarios {
     //CREAR METODO QUE ME MUEVA TODOS LOS ATACANTES Y ME RETORNE LA POSICION DE LOS ATACANTES 
     
 
-    
-    public void atacarJugador(JugadorPrincipal jugador){
-        if(jugador.coordenadas[X] == currentPosition[X] && jugador.coordenadas[Y] == currentPosition[Y]){
-            jugador.hp=jugador.hp-5;
+    //Terminarlo 
+    public int atacarJugador(){
+        
+        if(personajePos[X]== currentPosition[X] && personajePos[Y] == currentPosition[Y]){
+            
         }
+        return 0;
     }
 
     @Override
     public void update(int x, int y) {
         //moverseAtacante(x, y);
+        personajePos[0]=x;
+        personajePos[1]=y;
         System.out.println("cordenada: X"+x+"cordenada: Y" +y);
     }
 

@@ -24,6 +24,7 @@ public class Mapa implements Constantes {
             for (int j = 0; j < TABLERO_SIZE; j++){
                 tablero[i][j] = new Casilla(i, j);
                 tablero[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                tablero[i][j].setOpaque(true);
                 panelTablero.add(tablero[i][j]);
             }
         }

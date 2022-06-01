@@ -1,11 +1,14 @@
 package Vista;
+import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Modelo.Constantes;
 
-public class Casilla extends JPanel implements Constantes {
+public class Casilla extends JLabel implements Constantes {
     private int[] coordenadas;
     public Casilla(int posX, int posY){
         coordenadas = new int[2];
@@ -16,6 +19,7 @@ public class Casilla extends JPanel implements Constantes {
         setPreferredSize(new Dimension(CASILLA_WIDTH, CASILLA_HEIGHT));
     }
 
+   
     public int[] getCoords(){
         return coordenadas;
     }
@@ -43,5 +47,6 @@ public class Casilla extends JPanel implements Constantes {
     public void clearAliado(){
         setBackground(BG_COLOR);
     }
+
 
 }

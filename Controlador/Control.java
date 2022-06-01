@@ -7,36 +7,43 @@ import Vista.*;
 
 public class Control extends GUI  implements KeyListener,Constantes{
     
-    JugadorPrincipal jugador= new JugadorPrincipal();
-    public GUI tablero;
+    JugadorPrincipal jugador;
+    
     Secundarios creador;
     
     public Control() {
-
+        ventana.addKeyListener(this);
+        jugador= new JugadorPrincipal();
     }
 
+    // se deben hacer ciclos, para que se agreguen cada enemigo y aliado 
     public void crearEnemigos(){
-
-        creador= Factory.creaFactory(1);
-
+        
+        creador= Factory.creaFactory(2);
+        
     }
     
+    public void crearAliados(){
+
+        creador= Factory.creaFactory(2);
+
+    }
+    //------------------------------------------------------------------
+
 
     
 
     @Override
     public void keyPressed(KeyEvent e)  {
         if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-          
             jugador.moverseJugador('R');
-            //atacante.moverseAtacante(jugador.coordenadas[X],jugador.coordenadas[Y]);
             jugador.validarPosicion();
             System.out.println("moviendose a la derecha");
-
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
             
-            matriz[jugador.lastPosition[X]][jugador.lastPosition[Y]].setBackground(BG_COLOR);
-            matriz[jugador.coordenadas[X]][jugador.coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
+            moverJugador(jugador);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearPersonaje();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
         }
     
         if(e.getKeyCode()==KeyEvent.VK_LEFT){
@@ -48,8 +55,8 @@ public class Control extends GUI  implements KeyListener,Constantes{
             System.out.println("moviendose a la izquierda");
 
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
-            matriz[jugador.lastPosition[X]][jugador.lastPosition[Y]].setBackground(BG_COLOR);
-            matriz[jugador.coordenadas[X]][jugador.coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearPersonaje();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
         }
         if(e.getKeyCode()==KeyEvent.VK_UP){
             jugador.moverseJugador('U');
@@ -57,8 +64,8 @@ public class Control extends GUI  implements KeyListener,Constantes{
             System.out.println("moviendose hacia arriba");
 
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
-            matriz[jugador.lastPosition[X]][jugador.lastPosition[Y]].setBackground(BG_COLOR);
-            matriz[jugador.coordenadas[X]][jugador.coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearPersonaje();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
         }
         if(e.getKeyCode()==KeyEvent.VK_DOWN){
             jugador.moverseJugador('D');
@@ -66,8 +73,8 @@ public class Control extends GUI  implements KeyListener,Constantes{
             System.out.println("moviendose hacia abajo");
 
             System.out.println("cordenada: X"+ jugador.coordenadas[0]+"cordenada: Y" +jugador.coordenadas[1]);
-            matriz[jugador.lastPosition[X]][jugador.lastPosition[Y]].setBackground(BG_COLOR);
-            matriz[jugador.coordenadas[X]][jugador.coordenadas[Y]].setBackground(JUGADORPRINCIPAL);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearPersonaje();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
         }
     }
 
