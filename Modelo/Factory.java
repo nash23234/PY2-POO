@@ -13,7 +13,7 @@ public class Factory {
                 return new Aliado(pos[0],pos[1]);
             case 2:
                 pos=RandomPos();
-                return new Atacante(pos[0],pos[1]);
+                return new Enemigo(pos[0],pos[1]);
         }
         return null;
     }

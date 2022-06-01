@@ -5,24 +5,22 @@ import Modelo.*;
 
 import Vista.*;
 
-public class Control extends Tablero  implements KeyListener,Constantes{
+public class Control extends GUI  implements KeyListener,Constantes{
     
     JugadorPrincipal jugador= new JugadorPrincipal();
-    public Tablero tablero;
+    public GUI tablero;
+    Secundarios creador;
     
     public Control() {
+
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-      
-    }
+    public void crearEnemigos(){
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        
+        creador= Factory.creaFactory(1);
+
     }
+    
 
     
 
@@ -74,8 +72,18 @@ public class Control extends Tablero  implements KeyListener,Constantes{
     }
 
 
-   
-
 
    
+
+//-----------------------------------------------------------------------------------
+   @Override
+    public void keyReleased(KeyEvent e) {
+      
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
 }

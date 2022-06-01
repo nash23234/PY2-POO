@@ -21,7 +21,7 @@ public class JugadorPrincipal implements Constantes, Observado{
     public int [] coordenadas;
     public int[] lastPosition;
     public int hp;
-    public Tablero tablero;
+    public GUI tablero;
     public Control control;
 
     public JugadorPrincipal(){
