@@ -54,8 +54,9 @@ public class GUI implements Constantes {
 
     // poner atacantes en el tablero y guardarlos en un array , que ningun atacante
     // este en el indice 0,0
-    public void ponerAtacantes(int x, int y) {
-        mapa.tablero[x][y].pintarEnemigo();
+    public void ponerAtacantes(Secundarios enemigo) {
+        mapa.tablero[enemigo.lastPosition[X]][enemigo.lastPosition[Y]].clearEnemigo();
+        mapa.tablero[enemigo.currentPosition[X]][enemigo.currentPosition[Y]].pintarEnemigo();
     }
 
 }

@@ -42,7 +42,7 @@ public class Control extends GUI implements KeyListener, Constantes {
             creador = Factory.creaFactory(2);
             //verificarEnemy(creador);
             enemigos.add(creador);
-            ponerAtacantes(creador.currentPosition[X], creador.currentPosition[X]);
+            ponerAtacantes(creador);
         }
         suscribirEnemigos();
     }
@@ -70,6 +70,12 @@ public class Control extends GUI implements KeyListener, Constantes {
         }
 
     }
+
+    public void moverEnemigo(){
+        for (Secundarios i : enemigos) {
+            ponerAtacantes(i);
+        }
+    }
     // ------------------------------------------------------------------
 
     @Override
@@ -80,7 +86,7 @@ public class Control extends GUI implements KeyListener, Constantes {
             System.out.println("moviendose a la derecha");
             System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
-            
+            moverEnemigo();
 
         }
 
@@ -93,6 +99,7 @@ public class Control extends GUI implements KeyListener, Constantes {
 
             System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
+            moverEnemigo();
             
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -102,6 +109,7 @@ public class Control extends GUI implements KeyListener, Constantes {
 
             System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
+            moverEnemigo();
            
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -111,6 +119,7 @@ public class Control extends GUI implements KeyListener, Constantes {
 
             System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
+            moverEnemigo();
             
         }
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
