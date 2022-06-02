@@ -16,7 +16,7 @@ public class Casilla extends JLabel implements Constantes {
         coordenadas[Y] = posY;
 
         setBackground(BG_COLOR);
-        setPreferredSize(new Dimension(CASILLA_WIDTH, CASILLA_HEIGHT));
+        setPreferredSize(new Dimension(20, 20));
     }
 
    

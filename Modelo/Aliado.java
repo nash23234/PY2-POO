@@ -18,6 +18,12 @@ public class Aliado extends Secundarios{
         return hp;
     }
 
+    @Override
+    public void update(int X, int Y) {
+        // TODO Auto-generated method stub
+        
+    }
+
 
     
 }

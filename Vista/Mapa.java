@@ -20,6 +20,7 @@ public class Mapa implements Constantes {
         tablero = new Casilla[TABLERO_SIZE][TABLERO_SIZE];
         panelTablero = new JPanel();
         panelTablero.setLayout(new GridLayout(TABLERO_SIZE, TABLERO_SIZE));
+        panelTablero.setSize(20, 20);
         for (int i = 0; i < TABLERO_SIZE; i++){
             for (int j = 0; j < TABLERO_SIZE; j++){
                 tablero[i][j] = new Casilla(i, j);

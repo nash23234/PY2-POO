@@ -6,8 +6,8 @@ public interface Constantes {
     public static final int X =0;
     public static final int Y =1;
 
-    public static final int CASILLA_WIDTH  = 30; //ancho de las casillas
-    public static final int CASILLA_HEIGHT = 30; //Tamaño de las casillas
+    public static final int CASILLA_WIDTH  = 10; //ancho de las casillas
+    public static final int CASILLA_HEIGHT = 10; //Tamaño de las casillas
 
     public static final int TABLERO_SIZE = 30; //Tamaño del tablero
 

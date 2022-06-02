@@ -16,10 +16,5 @@ public abstract class Secundarios implements Constantes, Observador {
     public int[] lastPosition;
     public int[] personajePos;
 
-    
-    @Override
-    public void update(int X, int Y) {
-        //Aquí recibe las nuevas posiciones
-        
-    }
-}   
+
+}
