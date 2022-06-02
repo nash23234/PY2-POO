@@ -22,16 +22,13 @@ public class Control extends GUI implements KeyListener, Constantes {
 
     }
 
+    // ----------------------------ENEMIGOS--------------------------------------
+    //Por hacer: Que se pinten y despinten bien, restar vida (si pasan por ese enemigo el personaje)
+    //que no se junten en el pintar, aumentar enemigos
     // se agregan los observadores al arraylist de observadores
     public void suscribirEnemigos() {
         for (Secundarios i : enemigos) {
             System.out.println("suscribiendo");
-            jugador.agregarObservadores(i);
-        }
-    }
-
-    public void suscribirAliados() {
-        for (Secundarios i : aliados) {
             jugador.agregarObservadores(i);
         }
     }
@@ -47,7 +44,7 @@ public class Control extends GUI implements KeyListener, Constantes {
         suscribirEnemigos();
     }
 
-    public void verificarEnemy(Secundarios nuevo) {
+    public void verificarEnemy(Secundarios nuevo) {//Arreglar validacion
         if (enemigos.isEmpty()) {
             enemigos.add(nuevo);
         } else {
@@ -62,7 +59,23 @@ public class Control extends GUI implements KeyListener, Constantes {
         }
     }
 
-    public void crearAliados() {
+    
+    public void moverEnemigo(){
+        for (Secundarios i : enemigos) {
+            //if(jugador.coordenadas!= i.currentPosition)
+            ponerAtacantes(i);
+        }
+    }
+    // ----------------------------ALIADOS--------------------------------------
+    //Por hacer: 
+    
+    public void suscribirAliados() {
+        for (Secundarios i : aliados) {
+            jugador.agregarObservadores(i);
+        }
+    }
+
+    public void crearAliados() { //
 
         for (int i = 0; i > 10; i++) {
             creador = Factory.creaFactory(1);
@@ -71,11 +84,6 @@ public class Control extends GUI implements KeyListener, Constantes {
 
     }
 
-    public void moverEnemigo(){
-        for (Secundarios i : enemigos) {
-            ponerAtacantes(i);
-        }
-    }
     // ------------------------------------------------------------------
 
     @Override

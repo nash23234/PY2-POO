@@ -28,24 +28,16 @@ public class Casilla extends JLabel implements Constantes {
         setBackground(JUGADORPRINCIPAL);
     }
 
-    public void clearPersonaje(){
-        setBackground(BG_COLOR);
-    }
-
     public void pintarEnemigo(){
         setBackground(ENEMIGO);
     }
 
-    public void clearEnemigo(){
+    public void clearCasilla(){
         setBackground(BG_COLOR);
     }
 
     public void pintarAliado(){
         setBackground(ALIADO);
-    }
-
-    public void clearAliado(){
-        setBackground(BG_COLOR);
     }
 
 

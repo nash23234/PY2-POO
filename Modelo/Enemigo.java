@@ -52,12 +52,27 @@ public class Enemigo extends Secundarios {
             currentPosition[Y] = currentPosition[Y] - 1;
             System.out.println("moviendose a la derecha");
         }
+        lastPosition[X] = currentPosition[X];
+        lastPosition[Y] = currentPosition[Y];
+    }
+
+    public void move(int x, int y){
+        lastPosition[X] = currentPosition[X];
+        lastPosition[Y] = currentPosition[Y];
+    
+        if(x != currentPosition[X]){
+            currentPosition[X] += (x-currentPosition[X])/Math.abs(x-currentPosition[X]);
+        }
+        if(y != currentPosition[Y]){
+            currentPosition[Y] += (y-currentPosition[Y])/Math.abs(y-currentPosition[Y]);
+        }
     }
 
     @Override
     public void update(int x, int y) {
         //crear una función que vaya verificando cuando atacar
         acercarseJugador(x, y);
+        //move(x,y);
         System.out.println("El jugador esta: cordenada: X" + x + "cordenada: Y" + y);
     }
 

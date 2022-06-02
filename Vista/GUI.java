@@ -35,11 +35,11 @@ public class GUI implements Constantes {
         ventana.setResizable(false);
         ventana.pack();
         ventana.setVisible(true);
-        //ventana.add(control.crearEnemigos(10));
+        
        
         mapa.tablero[0][0].pintarPersonaje();
 
-        //agregar crear enenigos a tablero 
+         
         
         
 
@@ -48,15 +48,22 @@ public class GUI implements Constantes {
     
 
     public void moverJugador(JugadorPrincipal hereo) {
-        mapa.tablero[hereo.lastPosition[X]][hereo.lastPosition[Y]].clearPersonaje();
+        mapa.tablero[hereo.lastPosition[X]][hereo.lastPosition[Y]].clearCasilla();
         mapa.tablero[hereo.coordenadas[X]][hereo.coordenadas[Y]].pintarPersonaje();
     }
 
     // poner atacantes en el tablero y guardarlos en un array , que ningun atacante
     // este en el indice 0,0
     public void ponerAtacantes(Secundarios enemigo) {
-        mapa.tablero[enemigo.lastPosition[X]][enemigo.lastPosition[Y]].clearEnemigo();
+        mapa.tablero[enemigo.lastPosition[X]][enemigo.lastPosition[Y]].clearCasilla();
         mapa.tablero[enemigo.currentPosition[X]][enemigo.currentPosition[Y]].pintarEnemigo();
     }
+
+    public void ponerAliado(Secundarios aliado){//Opciones: puede también un parametro para cuando aparecer o no, como un true o false
+        //desde el control, creando una función de ver si el aliado o el jugador esta en el mismo lugar
+        mapa.tablero[aliado.lastPosition[X]][aliado.lastPosition[Y]].clearCasilla();
+    }
+
+    
 
 }

@@ -14,13 +14,22 @@ public class Aliado extends Secundarios{
         hp=100;
     }
 
-    public int darVida(){
-        return hp;
+    public int darVida(boolean sennal){
+        if(sennal)
+            return hp;
+        return 0;
+    }
+
+    public void verificando(boolean sennal){
+        darVida(sennal);
     }
 
     @Override
-    public void update(int X, int Y) {
-        // TODO Auto-generated method stub
+    public void update(int ejeX, int ejeY) {
+        if(ejeX==currentPosition[X]&& ejeY==currentPosition[Y]){
+            verificando(true);
+        }
+        verificando(false);
         
     }
 
