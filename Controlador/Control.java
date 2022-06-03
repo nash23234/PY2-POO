@@ -28,7 +28,7 @@ public class Control extends GUI implements KeyListener, Constantes {
     // se agregan los observadores al arraylist de observadores
     public void suscribirEnemigos() {
         for (Secundarios i : enemigos) {
-            System.out.println("suscribiendo");
+            //System.out.println("suscribiendo");
             jugador.agregarObservadores(i);
         }
     }
@@ -76,7 +76,6 @@ public class Control extends GUI implements KeyListener, Constantes {
     }
 
     public void crearAliados() { //
-
         for (int i = 0; i > 10; i++) {
             creador = Factory.creaFactory(1);
             aliados.add(creador);
@@ -91,8 +90,8 @@ public class Control extends GUI implements KeyListener, Constantes {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             jugador.moverseJugador('R');
             jugador.validarPosicion();
-            System.out.println("moviendose a la derecha");
-            System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
+            //System.out.println("moviendose a la derecha");
+            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
             moverEnemigo();
 
@@ -103,9 +102,9 @@ public class Control extends GUI implements KeyListener, Constantes {
 
             jugador.validarPosicion();
 
-            System.out.println("moviendose a la izquierda");
+            //System.out.println("moviendose a la izquierda");
 
-            System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
+            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
             moverEnemigo();
             
@@ -113,9 +112,9 @@ public class Control extends GUI implements KeyListener, Constantes {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             jugador.moverseJugador('U');
             jugador.validarPosicion();
-            System.out.println("moviendose hacia arriba");
+            //System.out.println("moviendose hacia arriba");
 
-            System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
+            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
             moverEnemigo();
            
@@ -123,9 +122,9 @@ public class Control extends GUI implements KeyListener, Constantes {
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             jugador.moverseJugador('D');
             jugador.validarPosicion();
-            System.out.println("moviendose hacia abajo");
+            //System.out.println("moviendose hacia abajo");
 
-            System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
+            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
             moverEnemigo();
             

@@ -39,8 +39,6 @@ public class GUI implements Constantes {
        
         mapa.tablero[0][0].pintarPersonaje();
 
-         
-        
         
 
     }
@@ -55,8 +53,22 @@ public class GUI implements Constantes {
     // poner atacantes en el tablero y guardarlos en un array , que ningun atacante
     // este en el indice 0,0
     public void ponerAtacantes(Secundarios enemigo) {
-        mapa.tablero[enemigo.lastPosition[X]][enemigo.lastPosition[Y]].clearCasilla();
-        mapa.tablero[enemigo.currentPosition[X]][enemigo.currentPosition[Y]].pintarEnemigo();
+        if(mapa.tablero[enemigo.currentPosition[X]][enemigo.currentPosition[Y]].getBackground()==Color.WHITE){
+            mapa.tablero[enemigo.lastPosition[X]][enemigo.lastPosition[Y]].clearCasilla();
+            mapa.tablero[enemigo.currentPosition[X]][enemigo.currentPosition[Y]].pintarEnemigo();
+        }
+        /*if(mapa.tablero[enemigo.currentPosition[X]][enemigo.currentPosition[Y]].getBackground()==Color.GREEN){
+            enemigo.currentPosition[X]=enemigo.currentPosition[X]-1;
+            enemigo.currentPosition[Y]=enemigo.currentPosition[Y]-1;
+            ponerAtacantes(enemigo);
+        }*/
+        else{
+            enemigo.currentPosition[X]=enemigo.currentPosition[X]+1;
+            enemigo.currentPosition[Y]=enemigo.currentPosition[Y]+1;
+            ponerAtacantes(enemigo);
+        }
+        
+
     }
 
     public void ponerAliado(Secundarios aliado){//Opciones: puede también un parametro para cuando aparecer o no, como un true o false

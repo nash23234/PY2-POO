@@ -19,9 +19,9 @@ public class Enemigo extends Secundarios {
         hp = hp - ataque;
     }
 
-    public int atacarJugador() {
+    public int atacarJugador(int x, int y) {
 
-        if (personajePos[X] == currentPosition[X] && personajePos[Y] == currentPosition[Y]) {
+        if (x == currentPosition[X] && y == currentPosition[Y]) {
 
         }
         return 0;
@@ -52,8 +52,7 @@ public class Enemigo extends Secundarios {
             currentPosition[Y] = currentPosition[Y] - 1;
             System.out.println("moviendose a la derecha");
         }
-        lastPosition[X] = currentPosition[X];
-        lastPosition[Y] = currentPosition[Y];
+        
     }
 
     public void move(int x, int y){
@@ -71,9 +70,11 @@ public class Enemigo extends Secundarios {
     @Override
     public void update(int x, int y) {
         //crear una función que vaya verificando cuando atacar
-        acercarseJugador(x, y);
-        //move(x,y);
-        System.out.println("El jugador esta: cordenada: X" + x + "cordenada: Y" + y);
+        //acercarseJugador(x, y);
+        move(x,y);
+        System.out.println("---------------------------------------");
+        System.out.println("---------El enemigo esta: cordenada: X" + this.currentPosition[X] + "cordenada: Y" + this.currentPosition[X]);
+
     }
 
 }

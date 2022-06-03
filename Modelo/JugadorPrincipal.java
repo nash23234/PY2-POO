@@ -88,7 +88,7 @@ public class JugadorPrincipal implements Constantes, Observado {
     @Override
     public void notificar() {
         for (Observador obs : observer) {
-            obs.update(coordenadas[X], coordenadas[X]);
+            obs.update(coordenadas[X], coordenadas[Y]);
         }
 
     }
