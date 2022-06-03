@@ -83,6 +83,19 @@ public class Control extends GUI implements KeyListener, Constantes {
 
     }
 
+    public void reducirVida(){
+        int damage;
+        for (Secundarios i : enemigos) {
+            damage=i.atacarJugador();
+            if(damage!=0){
+                jugador.RecibirAtaque(damage);
+            }
+            
+        }
+    }
+
+
+
     // ------------------------------------------------------------------
 
     @Override
@@ -94,6 +107,8 @@ public class Control extends GUI implements KeyListener, Constantes {
             //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
             moverEnemigo();
+            reducirVida();
+            System.out.println("Hp jugador:"+jugador.hp);
 
         }
 
@@ -102,31 +117,28 @@ public class Control extends GUI implements KeyListener, Constantes {
 
             jugador.validarPosicion();
 
-            //System.out.println("moviendose a la izquierda");
-
-            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
+            System.out.println("Hp jugador:"+jugador.hp);
             moverJugador(jugador);
             moverEnemigo();
+            reducirVida();
             
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             jugador.moverseJugador('U');
             jugador.validarPosicion();
-            //System.out.println("moviendose hacia arriba");
-
-            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
             moverEnemigo();
+            System.out.println("Hp jugador:"+jugador.hp);
+            reducirVida();
            
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             jugador.moverseJugador('D');
             jugador.validarPosicion();
-            //System.out.println("moviendose hacia abajo");
-
-            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
             moverJugador(jugador);
             moverEnemigo();
+            reducirVida();
+            System.out.println("Hp jugador:"+jugador.hp);
             
         }
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {

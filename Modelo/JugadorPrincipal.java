@@ -38,6 +38,10 @@ public class JugadorPrincipal implements Constantes, Observado {
         return 0;
     }
 
+    public void RecibirAtaque(int damage){
+        hp=hp-damage;
+    }
+
     public void moverseJugador(char posicion) {
         lastPosition[X] = coordenadas[X];
         lastPosition[Y] = coordenadas[Y];
@@ -89,6 +93,7 @@ public class JugadorPrincipal implements Constantes, Observado {
     public void notificar() {
         for (Observador obs : observer) {
             obs.update(coordenadas[X], coordenadas[Y]);
+            
         }
 
     }

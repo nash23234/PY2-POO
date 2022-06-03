@@ -16,5 +16,8 @@ public abstract class Secundarios implements Constantes, Observador {
     public int[] lastPosition;
     public int[] personajePos;
 
+    public int atacarJugador(){
+        return 0;
+    }
 
 }
