@@ -14,14 +14,12 @@ public class Aliado extends Secundarios{
         hp=100;
     }
 
-    public int darVida(boolean sennal){
-        if(sennal)
-            return hp;
+    public int darVida(boolean vida){
         return 0;
     }
 
-    public void verificando(boolean sennal){
-        darVida(sennal);
+    public void verificando(boolean vida){
+        darVida(vida);
     }
 
     @Override

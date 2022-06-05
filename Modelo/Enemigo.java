@@ -19,9 +19,11 @@ public class Enemigo extends Secundarios {
         hp = 10;
     }
 
-    public void RecibirAtaque(int ataque) {
+    public void recibirAtaque(int ataque) {
         hp = hp - ataque;
     }
+
+    //  
 
     @Override
     public int atacarJugador() {
@@ -33,6 +35,9 @@ public class Enemigo extends Secundarios {
 
     
     public void acercarseJugador(int x, int y) {
+        lastPosition[X] = currentPosition[X];
+        lastPosition[Y] = currentPosition[Y];
+
         if (currentPosition[X] > x && currentPosition[Y] > y) {
             currentPosition[X] = currentPosition[X] - 1;
             currentPosition[Y] = currentPosition[Y] - 1;
@@ -73,8 +78,6 @@ public class Enemigo extends Secundarios {
 
     @Override
     public void update(int x, int y) {
-        //crear una función que vaya verificando cuando atacar
-        //acercarseJugador(x, y);
         personajePos[X]=x;
         personajePos[Y]=y;
         move(x,y);

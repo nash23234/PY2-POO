@@ -19,6 +19,7 @@ public class Control extends GUI implements KeyListener, Constantes {
 
         ventana.addKeyListener(this);
         jugador = new JugadorPrincipal();
+        crearEnemigos();
 
     }
 
@@ -34,10 +35,9 @@ public class Control extends GUI implements KeyListener, Constantes {
     }
 
     // se deben hacer ciclos, para que se agreguen cada enemigo y aliado
-    public void crearEnemigos(int cant) {
-        for (int i = 0; i < cant; i++) {
+    public void crearEnemigos() {
+        for (int i = 0; i <10; i++) {
             creador = Factory.creaFactory(2);
-            //verificarEnemy(creador);
             enemigos.add(creador);
             ponerAtacantes(creador);
         }
@@ -90,7 +90,6 @@ public class Control extends GUI implements KeyListener, Constantes {
             if(damage!=0){
                 jugador.RecibirAtaque(damage);
             }
-            
         }
     }
 
@@ -105,10 +104,12 @@ public class Control extends GUI implements KeyListener, Constantes {
             jugador.validarPosicion();
             //System.out.println("moviendose a la derecha");
             //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
-            moverJugador(jugador);
+            
             moverEnemigo();
             reducirVida();
             System.out.println("Hp jugador:"+jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
 
         }
 
@@ -116,37 +117,41 @@ public class Control extends GUI implements KeyListener, Constantes {
             jugador.moverseJugador('L');
 
             jugador.validarPosicion();
-
-            System.out.println("Hp jugador:"+jugador.hp);
-            moverJugador(jugador);
             moverEnemigo();
             reducirVida();
+            System.out.println("Hp jugador:"+jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
+            
             
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             jugador.moverseJugador('U');
             jugador.validarPosicion();
-            moverJugador(jugador);
             moverEnemigo();
-            System.out.println("Hp jugador:"+jugador.hp);
             reducirVida();
+            System.out.println("Hp jugador:"+jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
            
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             jugador.moverseJugador('D');
             jugador.validarPosicion();
-            moverJugador(jugador);
             moverEnemigo();
             reducirVida();
             System.out.println("Hp jugador:"+jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
             
         }
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            crearEnemigos(10);
-            
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-
+        if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+            for(Secundarios actual: enemigos){
+                if(jugador.atacar(actual)){
+                    mapa.tablero[actual.lastPosition[X]][actual.lastPosition[Y]].clearCasilla();
+                    mapa.tablero[actual.currentPosition[X]][actual.currentPosition[Y]].pintarEnemigo();
+                }
+            }
         }
     }
 

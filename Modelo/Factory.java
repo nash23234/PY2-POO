@@ -9,16 +9,16 @@ public class Factory implements Constantes{
         pos = new int[2];
         switch (op) {
             case 1:
-                pos = RandomPos();
+                pos = randomPos();
                 return new Aliado(pos[X], pos[Y]);
             case 2:
-                pos = RandomPos();
+                pos = randomPos();
                 return new Enemigo(pos[X], pos[Y]);
         }
         return null;
     }
 
-    public static int[] RandomPos() {
+    public static int[] randomPos() {
         int[] coords;
         coords = new int[2];
         Random r = new Random();
