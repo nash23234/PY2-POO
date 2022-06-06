@@ -24,45 +24,31 @@ public class Enemigo extends Secundarios {
     }
 
     @Override
-    public int atacarJugador() {
-        if (personajePos[X] == currentPosition[X] && personajePos[Y] == currentPosition[Y]) {
+    public int atacarJugador(int x, int y) {
+        if (x == currentPosition[X] && y-1 == currentPosition[Y]) {
             return 5;
         }
-        return 0;
-    }
-
-    
-    public void acercarseJugador(int x, int y) {
-        if (currentPosition[X] > x && currentPosition[Y] > y) {
-            currentPosition[X] = currentPosition[X] - 1;
-            currentPosition[Y] = currentPosition[Y] - 1;
-            System.out.println("moviendose a la izquierda");
-            
+        if (x == currentPosition[X] && y+1 == currentPosition[Y]) {
+            return 5;
         }
-        if (currentPosition[X] < x && currentPosition[Y] < y) {
-            currentPosition[X] = currentPosition[X] + 1;
-            currentPosition[Y] = currentPosition[Y] + 1;
-            System.out.println("moviendose a la derecha");
-           
+        if (x+1 == currentPosition[X] && y == currentPosition[Y]) {
+            return 5;
         }
-        if (currentPosition[X] > x && currentPosition[Y] < y) {
-            currentPosition[X] = currentPosition[X] - 1;
-            currentPosition[Y] = currentPosition[Y] + 1;
-            System.out.println("moviendose a la izquierda");
-            
+        if (x-1 == currentPosition[X] && y == currentPosition[Y]) {
+            return 5;
         }
-        if (currentPosition[X] < x && currentPosition[Y] > y) {
-            currentPosition[X] = currentPosition[X] + 1;
-            currentPosition[Y] = currentPosition[Y] - 1;
-            System.out.println("moviendose a la derecha");
+        else{
+            return 0;
         }
-        
     }
 
     public void move(int x, int y){
         lastPosition[X] = currentPosition[X];
         lastPosition[Y] = currentPosition[Y];
     
+        if(x == currentPosition[X] && y == currentPosition[Y]){
+            return;
+        }
         if(x != currentPosition[X]){
             currentPosition[X] += (x-currentPosition[X])/Math.abs(x-currentPosition[X]);
         }
@@ -73,13 +59,11 @@ public class Enemigo extends Secundarios {
 
     @Override
     public void update(int x, int y) {
-        //crear una función que vaya verificando cuando atacar
-        //acercarseJugador(x, y);
         personajePos[X]=x;
         personajePos[Y]=y;
         move(x,y);
         System.out.println("---------------------------------------");
-        System.out.println("---------El enemigo esta: cordenada: X" + this.currentPosition[X] + "cordenada: Y" + this.currentPosition[X]);
+        System.out.println("---------El enemigo esta: cordenada: X" + this.currentPosition[Y] + "cordenada: Y" + this.currentPosition[X]);
 
     }
 

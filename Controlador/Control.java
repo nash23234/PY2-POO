@@ -3,12 +3,15 @@ package Controlador;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 import Modelo.*;
 
 import Vista.*;
 
-public class Control extends GUI implements KeyListener, Constantes {
+public class Control extends GUI implements KeyListener{
 
     JugadorPrincipal jugador;
     public ArrayList<Secundarios> enemigos = new ArrayList<Secundarios>();
@@ -19,56 +22,44 @@ public class Control extends GUI implements KeyListener, Constantes {
 
         ventana.addKeyListener(this);
         jugador = new JugadorPrincipal();
-
+        crearEnemigos();
+        System.out.println("************************");
+        crearAliados();
     }
 
     // ----------------------------ENEMIGOS--------------------------------------
-    //Por hacer: Que se pinten y despinten bien, restar vida (si pasan por ese enemigo el personaje)
-    //que no se junten en el pintar, aumentar enemigos
-    // se agregan los observadores al arraylist de observadores
     public void suscribirEnemigos() {
         for (Secundarios i : enemigos) {
-            //System.out.println("suscribiendo");
             jugador.agregarObservadores(i);
         }
     }
 
-    // se deben hacer ciclos, para que se agreguen cada enemigo y aliado
-    public void crearEnemigos(int cant) {
-        for (int i = 0; i < cant; i++) {
+    public void crearEnemigos() {
+        for (int i = 0; i < 10; i++) {
             creador = Factory.creaFactory(2);
-            //verificarEnemy(creador);
             enemigos.add(creador);
-            ponerAtacantes(creador);
+            ponerAtacantes(creador, aliados);
         }
         suscribirEnemigos();
     }
 
-    public void verificarEnemy(Secundarios nuevo) {//Arreglar validacion
-        if (enemigos.isEmpty()) {
-            enemigos.add(nuevo);
-        } else {
-            for (Secundarios i : enemigos) {
-                if (nuevo.currentPosition[X] == i.currentPosition[X] && nuevo.currentPosition[Y] == i.currentPosition[Y]) {
-                    creador = Factory.creaFactory(2);
-                    verificarEnemy(nuevo);
-                } else {
-                    enemigos.add(nuevo);
-                }
-            }
+    public void moverEnemigo() {
+        for (Secundarios i : enemigos) {
+            ponerAtacantes(i, aliados);
         }
     }
 
-    
-    public void moverEnemigo(){
+    public void reducirVida() {
+        int damage;
         for (Secundarios i : enemigos) {
-            //if(jugador.coordenadas!= i.currentPosition)
-            ponerAtacantes(i);
+            damage = i.atacarJugador(jugador.coordenadas[X], jugador.coordenadas[Y]);
+            if (damage != 0) {
+                jugador.RecibirAtaque(damage);
+            }
         }
     }
     // ----------------------------ALIADOS--------------------------------------
-    //Por hacer: 
-    
+
     public void suscribirAliados() {
         for (Secundarios i : aliados) {
             jugador.agregarObservadores(i);
@@ -76,80 +67,136 @@ public class Control extends GUI implements KeyListener, Constantes {
     }
 
     public void crearAliados() { //
-        for (int i = 0; i > 10; i++) {
+        for (int i = 0; i < 6; i++) {
             creador = Factory.creaFactory(1);
             aliados.add(creador);
+            ponerAliados(creador);
         }
+        suscribirAliados();
 
     }
 
-    public void reducirVida(){
-        int damage;
-        for (Secundarios i : enemigos) {
-            damage=i.atacarJugador();
-            if(damage!=0){
-                jugador.RecibirAtaque(damage);
+    // El jugador salva a un aliado y este recibe vida
+    public void subirVida() {
+        int vida;
+        for (Secundarios i : aliados) {
+            vida = i.curarJugador(jugador.coordenadas[X], jugador.coordenadas[Y]);
+            if (vida != 0) {
+                if (jugador.recibirVida(vida)) {
+                    mapa.tablero[i.currentPosition[X]][i.currentPosition[Y]].pintarAliado();
+                    JOptionPane.showMessageDialog(null, "tenkiu\n nueva vida: " + jugador.hp);
+                    mapa.tablero[i.currentPosition[X]][i.currentPosition[Y]].pintarPersonaje();
+                    aliados.remove(i);
+                    break;
+
+                }
             }
-            
         }
     }
-
-
-
     // ------------------------------------------------------------------
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
             jugador.moverseJugador('R');
             jugador.validarPosicion();
-            //System.out.println("moviendose a la derecha");
-            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
-            moverJugador(jugador);
+            for (int i = 0; i < TABLERO_SIZE; i++) {
+                for (int j = 0; j < TABLERO_SIZE; j++) {
+                    mapa.tablero[i][j].clearCasilla();
+                }
+            }
             moverEnemigo();
             reducirVida();
-            System.out.println("Hp jugador:"+jugador.hp);
+            for (Secundarios i : aliados) {
+                mapa.tablero[i.currentPosition[X]][i.currentPosition[Y]].pintarAliado();
+            }
+            subirVida();
+            System.out.println("Hp jugador:" + jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
+            System.out.println("*********************");
 
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
             jugador.moverseJugador('L');
 
             jugador.validarPosicion();
-
-            System.out.println("Hp jugador:"+jugador.hp);
-            moverJugador(jugador);
+            for (int i = 0; i < TABLERO_SIZE; i++) {
+                for (int j = 0; j < TABLERO_SIZE; j++) {
+                    mapa.tablero[i][j].clearCasilla();
+                }
+            }
             moverEnemigo();
             reducirVida();
-            
+            for (Secundarios i : aliados) {
+                mapa.tablero[i.currentPosition[X]][i.currentPosition[Y]].pintarAliado();
+            }
+            subirVida();
+            System.out.println("Hp jugador:" + jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
+
+            System.out.println("*********************");
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
             jugador.moverseJugador('U');
             jugador.validarPosicion();
-            moverJugador(jugador);
+            for (int i = 0; i < TABLERO_SIZE; i++) {
+                for (int j = 0; j < TABLERO_SIZE; j++) {
+                    mapa.tablero[i][j].clearCasilla();
+                }
+            }
             moverEnemigo();
-            System.out.println("Hp jugador:"+jugador.hp);
             reducirVida();
-           
+            for (Secundarios i : aliados) {
+                mapa.tablero[i.currentPosition[X]][i.currentPosition[Y]].pintarAliado();
+            }
+            subirVida();
+            System.out.println("Hp jugador:" + jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
+            System.out.println("*********************");
         }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
             jugador.moverseJugador('D');
             jugador.validarPosicion();
-            moverJugador(jugador);
+            for (int i = 0; i < TABLERO_SIZE; i++) {
+                for (int j = 0; j < TABLERO_SIZE; j++) {
+                    mapa.tablero[i][j].clearCasilla();
+                }
+            }
             moverEnemigo();
             reducirVida();
-            System.out.println("Hp jugador:"+jugador.hp);
-            
+            for (Secundarios i : aliados) {
+                mapa.tablero[i.currentPosition[X]][i.currentPosition[Y]].pintarAliado();
+            }
+            subirVida();
+            System.out.println("Hp jugador:" + jugador.hp);
+            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
+            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
+            System.out.println("*********************");
         }
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            crearEnemigos(10);
-            
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+            for (Secundarios actual : enemigos) {
+                if (jugador.atacar(actual)) {
+                    Random r = new Random();
+                    int new_x = r.nextInt(30);
+                    int new_y = r.nextInt(30);
+                    actual.lastPosition[X] = actual.currentPosition[X];
+                    actual.lastPosition[Y] = actual.currentPosition[Y];
 
+                    actual.currentPosition[X] = new_x;
+                    actual.currentPosition[Y] = new_y;
+
+                    mapa.tablero[actual.lastPosition[X]][actual.lastPosition[Y]].clearCasilla();
+                    mapa.tablero[actual.currentPosition[X]][actual.currentPosition[Y]].pintarEnemigo();
+                    System.out.println("Ahora el enemigo está en: x" + actual.currentPosition[X] + ", y"
+                            + actual.currentPosition[Y]);
+                }
+            }
         }
     }
-
 
     // -----------------------------------------------------------------------------------
     @Override

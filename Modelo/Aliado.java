@@ -1,38 +1,32 @@
 package Modelo;
 
-public class Aliado extends Secundarios{
-    
+public class Aliado extends Secundarios {
+
     public int hp;
-    public Aliado(int x, int y){
+
+    public Aliado(int x, int y) {
         currentPosition = new int[2];
-        currentPosition[X] = 0;
-        currentPosition[Y] = 0;
+        currentPosition[X] = x;
+        currentPosition[Y] = y;
 
         lastPosition = new int[2];
-        lastPosition[X] = 0;
-        lastPosition[Y] = 0;
-        hp=100;
+        lastPosition[X] = x;
+        lastPosition[Y] = y;
+        hp = 100;
     }
 
-    public int darVida(boolean sennal){
-        if(sennal)
-            return hp;
-        return 0;
-    }
-
-    public void verificando(boolean sennal){
-        darVida(sennal);
+    public int curarJugador(int x, int y) {
+        if (x == currentPosition[X] && y == currentPosition[Y]) {
+            return 10;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public void update(int ejeX, int ejeY) {
-        if(ejeX==currentPosition[X]&& ejeY==currentPosition[Y]){
-            verificando(true);
-        }
-        verificando(false);
-        
+        lastPosition[X] = currentPosition[X];
+        lastPosition[Y] = currentPosition[Y];
     }
 
-
-    
 }

@@ -33,13 +33,37 @@ public class JugadorPrincipal implements Constantes, Observado {
         notificar();
     }
 
-    // enviar un numero que va restar la vida de los enemigos
-    public int atacar() {
-        return 0;
+    public boolean atacar(Secundarios enemigo) {
+        if (coordenadas[X] == enemigo.currentPosition[X] && coordenadas[Y] + 1 == enemigo.currentPosition[Y]) {
+            System.out.println("Mirá, tengo un enemigo al frente, hay que atacarlo...");
+            return true;
+        }
+        if (coordenadas[X] == enemigo.currentPosition[X] && coordenadas[Y] - 1 == enemigo.currentPosition[Y]) {
+            System.out.println("Mirá, tengo un enemigo al frente, hay que atacarlo...");
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void RecibirAtaque(int damage){
-        hp=hp-damage;
+    public void RecibirAtaque(int damage) {
+        if (hp > 0) {
+            hp = hp - damage;
+        }
+        if (hp <= 0) {
+            JOptionPane.showMessageDialog(null, "El jugador ha muerto, fin del juego");
+            System.exit(0);
+        }
+    }
+
+    public boolean recibirVida(int health) {
+        if (hp < 100) {
+            hp = hp + health;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public void moverseJugador(char posicion) {
@@ -93,7 +117,6 @@ public class JugadorPrincipal implements Constantes, Observado {
     public void notificar() {
         for (Observador obs : observer) {
             obs.update(coordenadas[X], coordenadas[Y]);
-            
         }
 
     }
