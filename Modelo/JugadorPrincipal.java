@@ -3,7 +3,6 @@ package Modelo;
 import Vista.*;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -33,7 +32,6 @@ public class JugadorPrincipal implements Constantes, Observado {
         observer = new ArrayList<Observador>();
         notificar();
     }
-<<<<<<< HEAD
 
     public boolean atacar(Secundarios enemigo) {
         if (coordenadas[X] == enemigo.currentPosition[X] && coordenadas[Y] + 1 == enemigo.currentPosition[Y]) {
@@ -66,29 +64,6 @@ public class JugadorPrincipal implements Constantes, Observado {
             return false;
         }
 
-=======
-    public boolean atacar(Secundarios enemigo) {
-        if(coordenadas[X]+1==enemigo.currentPosition[X] && coordenadas[Y]==enemigo.currentPosition[Y]){
-            Random r = new Random();
-            int x = r.nextInt(30);
-            int y = r.nextInt(30);
-            enemigo.currentPosition[X]=x;
-            enemigo.currentPosition[Y]=y;
-            return true;
-        }
-        return false;
-    }
-
-    public void RecibirAtaque(int damage){
-        if(hp > 0 ){
-            hp=hp-damage;
-        }
-        if(hp <= 0){
-            JOptionPane.showMessageDialog(null, "El jugador ha muerto, fin del juego");
-            System.exit(0);
-        }
-        
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
     }
 
     public void moverseJugador(char posicion) {

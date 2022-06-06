@@ -23,12 +23,8 @@ public class Control extends GUI implements KeyListener{
         ventana.addKeyListener(this);
         jugador = new JugadorPrincipal();
         crearEnemigos();
-<<<<<<< HEAD
         System.out.println("************************");
         crearAliados();
-=======
-
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
     }
 
     // ----------------------------ENEMIGOS--------------------------------------
@@ -38,14 +34,8 @@ public class Control extends GUI implements KeyListener{
         }
     }
 
-<<<<<<< HEAD
     public void crearEnemigos() {
         for (int i = 0; i < 10; i++) {
-=======
-    // se deben hacer ciclos, para que se agreguen cada enemigo y aliado
-    public void crearEnemigos() {
-        for (int i = 0; i <10; i++) {
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
             creador = Factory.creaFactory(2);
             enemigos.add(creador);
             ponerAtacantes(creador, aliados);
@@ -110,7 +100,6 @@ public class Control extends GUI implements KeyListener{
         if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
             jugador.moverseJugador('R');
             jugador.validarPosicion();
-<<<<<<< HEAD
             for (int i = 0; i < TABLERO_SIZE; i++) {
                 for (int j = 0; j < TABLERO_SIZE; j++) {
                     mapa.tablero[i][j].clearCasilla();
@@ -126,16 +115,6 @@ public class Control extends GUI implements KeyListener{
             mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
             mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
             System.out.println("*********************");
-=======
-            //System.out.println("moviendose a la derecha");
-            //System.out.println("cordenada: X" + jugador.coordenadas[0] + "cordenada: Y" + jugador.coordenadas[1]);
-            
-            moverEnemigo();
-            reducirVida();
-            System.out.println("Hp jugador:"+jugador.hp);
-            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
-            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
 
         }
 
@@ -143,7 +122,6 @@ public class Control extends GUI implements KeyListener{
             jugador.moverseJugador('L');
 
             jugador.validarPosicion();
-<<<<<<< HEAD
             for (int i = 0; i < TABLERO_SIZE; i++) {
                 for (int j = 0; j < TABLERO_SIZE; j++) {
                     mapa.tablero[i][j].clearCasilla();
@@ -160,20 +138,10 @@ public class Control extends GUI implements KeyListener{
             mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
 
             System.out.println("*********************");
-=======
-            moverEnemigo();
-            reducirVida();
-            System.out.println("Hp jugador:"+jugador.hp);
-            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
-            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
-            
-            
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
         }
         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
             jugador.moverseJugador('U');
             jugador.validarPosicion();
-<<<<<<< HEAD
             for (int i = 0; i < TABLERO_SIZE; i++) {
                 for (int j = 0; j < TABLERO_SIZE; j++) {
                     mapa.tablero[i][j].clearCasilla();
@@ -189,19 +157,10 @@ public class Control extends GUI implements KeyListener{
             mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
             mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
             System.out.println("*********************");
-=======
-            moverEnemigo();
-            reducirVida();
-            System.out.println("Hp jugador:"+jugador.hp);
-            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
-            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
-           
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
             jugador.moverseJugador('D');
             jugador.validarPosicion();
-<<<<<<< HEAD
             for (int i = 0; i < TABLERO_SIZE; i++) {
                 for (int j = 0; j < TABLERO_SIZE; j++) {
                     mapa.tablero[i][j].clearCasilla();
@@ -234,20 +193,6 @@ public class Control extends GUI implements KeyListener{
                     mapa.tablero[actual.currentPosition[X]][actual.currentPosition[Y]].pintarEnemigo();
                     System.out.println("Ahora el enemigo está en: x" + actual.currentPosition[X] + ", y"
                             + actual.currentPosition[Y]);
-=======
-            moverEnemigo();
-            reducirVida();
-            System.out.println("Hp jugador:"+jugador.hp);
-            mapa.tablero[jugador.lastPosition[X]][jugador.lastPosition[Y]].clearCasilla();
-            mapa.tablero[jugador.coordenadas[X]][jugador.coordenadas[Y]].pintarPersonaje();
-            
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
-            for(Secundarios actual: enemigos){
-                if(jugador.atacar(actual)){
-                    mapa.tablero[actual.lastPosition[X]][actual.lastPosition[Y]].clearCasilla();
-                    mapa.tablero[actual.currentPosition[X]][actual.currentPosition[Y]].pintarEnemigo();
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
                 }
             }
         }

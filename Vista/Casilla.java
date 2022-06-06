@@ -1,8 +1,5 @@
 package Vista;
-<<<<<<< HEAD
 
-=======
->>>>>>> 76f08738b7eee7628d4b03c647bad24339020066
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import Modelo.Constantes;
